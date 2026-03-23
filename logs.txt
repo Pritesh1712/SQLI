@@ -1,0 +1,288 @@
+' OR '1'='1|Attack|127.0.0.1|2025-06-26 13:21:50
+' OR 1=1 --|Attack|127.0.0.1|2025-06-26 13:21:55
+' OR 'a'='a|Attack|127.0.0.1|2025-06-26 13:22:02
+" OR 1=1 #|Attack|127.0.0.1|2025-06-26 13:22:08
+' UNION SELECT null, username, password FROM users --|Attack|127.0.0.1|2025-06-26 13:22:15
+' UNION SELECT 1,2,3 #|Safe|127.0.0.1|2025-06-26 13:22:21
+' UNION SELECT 1,2,3 #|Safe|127.0.0.1|2025-06-26 13:22:29
+' UNION SELECT table_name, null, null FROM information_schema.tables --|Attack|127.0.0.1|2025-06-26 13:22:42
+'; DROP TABLE users --|Attack|127.0.0.1|2025-06-26 13:22:50
+'; EXEC xp_cmdshell('dir') --|Safe|127.0.0.1|2025-06-26 13:22:55
+' OR 1=1 -- |Attack|127.0.0.1|2025-06-26 13:23:07
+' OR 'x'='x' /*|Attack|127.0.0.1|2025-06-26 13:23:13
+admin' -- |Safe|127.0.0.1|2025-06-26 13:23:18
+admin' -- |Safe|127.0.0.1|2025-06-26 13:23:23
+' OR username IN ('admin', 'user') --|Attack|127.0.0.1|2025-06-26 13:23:33
+' AND role NOT IN ('guest', 'banned') --|Safe|127.0.0.1|2025-06-26 13:23:38
+' OR username LIKE '%admin%' --|Attack|127.0.0.1|2025-06-26 13:23:45
+' OR email LIKE '%@gmail.com%' --|Attack|127.0.0.1|2025-06-26 13:23:50
+' OR IF(1=1, SLEEP(5), 0) --|Attack|127.0.0.1|2025-06-26 13:23:57
+' OR 1=1 AND SLEEP(3) --|Attack|127.0.0.1|2025-06-26 13:24:03
+' AND (SELECT COUNT(*) FROM users) > 0 --|Attack|127.0.0.1|2025-06-26 13:24:10
+' AND EXISTS(SELECT * FROM users WHERE username='admin') --|Attack|127.0.0.1|2025-06-26 13:24:15
+' oR 1=1 --|Attack|127.0.0.1|2025-06-26 13:24:21
+' AnD 1=1 --|Safe|127.0.0.1|2025-06-26 13:24:28
+hello world|Safe|127.0.0.1|2025-06-26 17:13:31
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-06-27 16:00:36
+'1  == 1|Safe|127.0.0.1|2025-06-27 16:00:46
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-06-27 16:27:07
+admin' -- |Safe|127.0.0.1|2025-06-27 16:27:26
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-06-27 16:34:01
+adarsh panday|Safe|127.0.0.1|2025-06-27 16:34:12
+drop table users;|Attack|127.0.0.1|2025-06-27 16:34:20
+' OR 1=1 --|Attack|127.0.0.1|2025-06-27 16:34:29
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-06-27 16:40:09
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-06-30 16:10:08
+hello world|Safe|127.0.0.1|2025-06-30 16:10:12
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-07-02 15:05:21
+' OR 1=1 --|Attack|127.0.0.1|2025-07-02 15:05:24
+admin' -- |Safe|127.0.0.1|2025-07-02 15:05:26
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-07-02 16:01:43
+adarsh panday|Safe|127.0.0.1|2025-07-02 16:01:51
+' OR 1=1 --|Attack|127.0.0.1|2025-07-02 16:02:19
+' OR 1=1 --|Attack|127.0.0.1|2025-07-02 16:02:39
+hello world|Safe|127.0.0.1|2025-07-03 16:13:04
+SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-03 18:57:06
+SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-03 18:57:13
+' OR 1=1 --|Attack|127.0.0.1|2025-07-03 18:57:17
+'SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-03 18:57:25
+SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-03 18:57:34
+' OR 1=1 --|Attack|127.0.0.1|2025-07-03 18:57:39
+admin' -- |Attack|127.0.0.1|2025-07-03 18:58:01
+SELECT * FROM users WHERE username = 'admin' OR 1=1|Safe|127.0.0.1|2025-07-03 19:01:06
+SELECT * FROM users WHERE username = 'admin' --'|Safe|127.0.0.1|2025-07-03 19:01:21
+SELECT * FROM users WHERE username = 'admin' UNION SELECT * FROM passwords|Safe|127.0.0.1|2025-07-03 19:01:35
+"SELECT * FROM users WHERE username = 'admin' OR 1 = 1 --"|Safe|127.0.0.1|2025-07-03 19:09:30
+SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-04 13:38:59
+hello world|Attack|127.0.0.1|2025-07-04 13:39:12
+hello world|Attack|127.0.0.1|2025-07-04 13:39:20
+admin' -- |Attack|127.0.0.1|2025-07-04 13:39:26
+' OR 1=1 --|Attack|127.0.0.1|2025-07-04 13:39:32
+hello world|Attack|127.0.0.1|2025-07-04 13:39:37
+SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-04 13:39:40
+adarsh panday|Attack|127.0.0.1|2025-07-04 13:44:18
+adarsh|Attack|127.0.0.1|2025-07-04 13:44:29
+' OR 1=1 --|Attack|127.0.0.1|2025-07-04 13:44:35
+1 == 1|Attack|127.0.0.1|2025-07-04 13:44:39
+SELECT * FROM users WHERE username = 'admin'0|Safe|127.0.0.1|2025-07-04 13:44:44
+SELECT * FROM users WHERE username = 'admin'|Safe|127.0.0.1|2025-07-04 13:44:48
+hello world|Attack|127.0.0.1|2025-07-04 13:50:06
+hello world|Attack|127.0.0.1|2025-07-04 13:50:10
+adarsh|Attack|127.0.0.1|2025-07-04 13:50:14
+pritesh|Attack|127.0.0.1|2025-07-04 13:50:20
+aman|Attack|127.0.0.1|2025-07-04 13:50:24
+priyanshu|Attack|127.0.0.1|2025-07-04 13:50:29
+drop table|Attack|127.0.0.1|2025-07-04 13:50:37
+23|Attack|127.0.0.1|2025-07-04 13:50:46
+hhhhhhhhhhhhhhh|Attack|127.0.0.1|2025-07-04 13:50:50
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 13:53:38
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 13:53:44
+SELECT * FROM users WHERE username = 'admin';|Safe|127.0.0.1|2025-07-04 13:53:58
+hello world|Safe|127.0.0.1|2025-07-04 14:04:10
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 14:04:15
+SELECT * FROM users WHERE username = 'admin' OR '1'='1'|Safe|127.0.0.1|2025-07-04 14:04:21
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 14:04:32
+SELECT * FROM users WHERE username = 'admin' OR '1'=='1';|Safe|127.0.0.1|2025-07-04 14:04:38
+SELECT * FROM users WHERE username = 'admin' --;|Safe|127.0.0.1|2025-07-04 14:05:21
+hello world|Safe|127.0.0.1|2025-07-04 14:52:04
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 14:52:09
+SELECT * FROM users WHERE username = 'admin' OR '1'=='1';|Safe|127.0.0.1|2025-07-04 14:52:16
+SELECT * FROM users WHERE username = '' OR '1'='1';|Safe|127.0.0.1|2025-07-04 14:52:41
+SELECT * FROM accounts WHERE user = 'admin' AND password = '' OR 1=1;|Safe|127.0.0.1|2025-07-04 14:52:58
+SELECT * FROM login WHERE user = 'abc' UNION SELECT credit_card, expiry FROM cards;|Safe|127.0.0.1|2025-07-04 14:53:13
+SELECT * FROM data WHERE name = 'x' AND EXISTS (SELECT * FROM users);|Safe|127.0.0.1|2025-07-04 14:53:27
+SELECT * FROM members WHERE id = 1; DROP TABLE users;|Safe|127.0.0.1|2025-07-04 14:53:36
+SELECT * FROM login WHERE user = 'admin' /*' AND pass = '123'*/;|Safe|127.0.0.1|2025-07-04 14:53:48
+SELECT * FROM login WHERE user = 'admin' /*' AND pass = '123'*/;|Safe|127.0.0.1|2025-07-04 14:53:57
+SELECT * FROM student WHERE id = '123' OR 1=1 LIMIT 1 --';|Safe|127.0.0.1|2025-07-04 14:54:08
+SELECT * FROM users WHERE username = '' OR 1=1 --';|Safe|127.0.0.1|2025-07-04 14:55:51
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 15:03:44
+SELECT * FROM users WHERE username = 'admin' OR '1'=='1';|Safe|127.0.0.1|2025-07-04 15:03:50
+SELECT * FROM login WHERE user = 'admin' /*' AND pass = '123'*/;|Safe|127.0.0.1|2025-07-04 15:03:54
+hello world|Safe|127.0.0.1|2025-07-04 15:03:57
+pritesh|Safe|127.0.0.1|2025-07-04 15:04:01
+' OR 1==1;|Safe|127.0.0.1|2025-07-04 15:04:12
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 15:18:56
+SELECT * FROM users WHERE username = '' OR 1=1 --|Safe|127.0.0.1|2025-07-04 15:20:53
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 15:30:39
+SELECT * FROM users WHERE username = '' OR 1=1 --|Safe|127.0.0.1|2025-07-04 15:31:05
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 15:36:13
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Safe|127.0.0.1|2025-07-04 15:45:45
+pritesh|Safe|127.0.0.1|2025-07-04 15:45:52
+SELECT * FROM users WHERE username = '' OR 1=1 -- |Safe|127.0.0.1|2025-07-04 15:49:07
+' OR '1'='1|Safe|127.0.0.1|2025-07-05 12:03:48
+' OR 1=1 --|Safe|127.0.0.1|2025-07-05 12:04:00
+admin' -- |Safe|127.0.0.1|2025-07-05 12:04:08
+' OR 'a'='a|Safe|127.0.0.1|2025-07-05 12:04:17
+' UNION SELECT null, username, password FROM users --|Safe|127.0.0.1|2025-07-05 12:04:27
+' OR IF(1=1, SLEEP(5), 0) --|Safe|127.0.0.1|2025-07-05 12:04:36
+SELECT * FROM users WHERE username = 'admin' AND password = '1234'|Safe|127.0.0.1|2025-07-05 12:04:53
+ "SELECT * FROM users WHERE id = 1"|Safe|127.0.0.1|2025-07-05 12:20:10
+SELECT * FROM users WHERE id = 1 OR 1=1 --|Attack|127.0.0.1|2025-07-05 12:20:32
+SELECT * FROM users WHERE username = 'admin' OR 1=1 --|Attack|127.0.0.1|2025-07-05 12:21:07
+SELECT * FROM login WHERE username = 'admin' -- |Safe|127.0.0.1|2025-07-05 12:21:13
+SELECT * FROM login WHERE username = 'admin' -- |Safe|127.0.0.1|2025-07-05 12:21:21
+SELECT name, email FROM members WHERE id = 1 UNION SELECT username, password FROM users --|Safe|127.0.0.1|2025-07-05 12:21:27
+SELECT * FROM accounts WHERE id = 1;*|Safe|127.0.0.1|2025-07-05 12:21:34
+' UNION SELECT name, credit_card FROM customers --|Safe|127.0.0.1|2025-07-05 12:22:12
+' UNION SELECT name, credit_card FROM customers --|Safe|127.0.0.1|2025-07-05 12:22:18
+' OR '1'='1|Attack|127.0.0.1|2025-07-05 12:22:26
+SELECT * FROM profiles WHERE email = ''); DROP TABLE comments; --'|Safe|127.0.0.1|2025-07-05 12:22:45
+SELECT * FROM profiles WHERE email = ''); DROP TABLE comments; --'|Safe|127.0.0.1|2025-07-05 12:23:00
+SELECT * FROM users WHERE username = 'admin' OR 1=1 --;|Attack|127.0.0.1|2025-07-05 13:02:46
+SELECT * FROM login WHERE user = '' OR '' = '';|Attack|127.0.0.1|2025-07-05 13:02:55
+SELECT * FROM accounts WHERE name = 'admin' AND 'a'='a';|Safe|127.0.0.1|2025-07-05 13:03:02
+SELECT * FROM data WHERE id = 5 UNION SELECT username, password FROM admin;|Safe|127.0.0.1|2025-07-05 13:03:12
+UPDATE users SET password = 'hacked' WHERE username = 'admin' OR 1=1;|Safe|127.0.0.1|2025-07-05 13:03:25
+DELETE FROM users WHERE id = 5 OR 1=1;|Attack|127.0.0.1|2025-07-05 13:03:35
+NSERT INTO users (username, password) VALUES ('admin', 'pass') OR 1=1;|Safe|127.0.0.1|2025-07-05 13:03:47
+INSERT INTO users (username, password) VALUES ('admin', 'pass') OR 1=1;|Safe|127.0.0.1|2025-07-05 13:03:56
+SELECT * FROM logs WHERE user = 'admin' OR EXISTS (SELECT * FROM users);|Attack|127.0.0.1|2025-07-05 13:04:05
+SELECT * FROM records WHERE status IN ('active') OR '1'='1';|Attack|127.0.0.1|2025-07-05 13:04:13
+SELECT * FROM feedback WHERE rating = 5 OR 5=5;|Attack|127.0.0.1|2025-07-05 13:04:21
+SELECT * FROM accounts WHERE name = 'admin' AND 'a'='a';|Safe|127.0.0.1|2025-07-05 13:04:32
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Attack|127.0.0.1|2025-07-05 13:15:40
+SELECT * FROM login WHERE user = '' OR '1'='1' --';|Attack|127.0.0.1|2025-07-05 13:15:47
+SELECT * FROM data WHERE id = 1 UNION SELECT username, password FROM admin;|Safe|127.0.0.1|2025-07-05 13:15:54
+DELETE FROM users WHERE username = 'john'; --';|Safe|127.0.0.1|2025-07-05 13:16:04
+INSERT INTO accounts (user, pass) VALUES ('hacker', '123'); DROP TABLE accounts; --';|Safe|127.0.0.1|2025-07-05 13:16:18
+SELECT * FROM members WHERE name = '' OR 1=1 LIMIT 1 OFFSET 1;|Attack|127.0.0.1|2025-07-05 13:16:31
+SELECT * FROM users WHERE username = 'john';|Safe|127.0.0.1|2025-07-05 13:16:39
+UPDATE accounts SET balance = 5000 WHERE account_id = 123;|Safe|127.0.0.1|2025-07-05 13:16:46
+INSERT INTO logins (username, status) VALUES ('admin', 'success');|Safe|127.0.0.1|2025-07-05 13:16:53
+DELETE FROM sessions WHERE session_id = 'xyz123';|Safe|127.0.0.1|2025-07-05 13:16:59
+SELECT * FROM employees WHERE salary BETWEEN 30000 AND 60000;|Safe|127.0.0.1|2025-07-05 13:17:05
+SELECT * FROM products WHERE name LIKE '%Laptop%';|Safe|127.0.0.1|2025-07-05 13:17:13
+SELECT * FROM login WHERE username = 'admin' OR '1'='1'|Attack|127.0.0.1|2025-07-05 13:21:12
+SELECT name FROM users WHERE id = 1 UNION SELECT password FROM admin --|Safe|127.0.0.1|2025-07-05 13:21:18
+DELETE FROM users WHERE name = 'john' OR 1=1 --|Attack|127.0.0.1|2025-07-05 13:21:27
+SELECT * FROM customers WHERE email = '' OR EXISTS(SELECT * FROM credit_cards)|Attack|127.0.0.1|2025-07-05 13:21:34
+INSERT INTO orders VALUES (1, 100); DROP TABLE users --|Safe|127.0.0.1|2025-07-05 13:21:41
+SELECT * FROM users WHERE username = 'admin' OR 1=1 --;|Attack|127.0.0.1|2025-07-05 15:28:55
+SELECT * FROM logins WHERE username = 'bob'; DROP TABLE users; --;|Attack|127.0.0.1|2025-07-05 15:29:02
+SELECT * FROM students WHERE id = 1 UNION SELECT username, password FROM admins;|Attack|127.0.0.1|2025-07-05 15:29:15
+SELECT * FROM data WHERE id = 5 OR EXISTS(SELECT * FROM users);|Attack|127.0.0.1|2025-07-05 15:29:21
+SELECT * FROM users WHERE username = 'alice' AND password = 'password123';|Attack|127.0.0.1|2025-07-05 15:29:28
+SELECT * FROM users WHERE username = 'alice' AND password = 'password123';|Attack|127.0.0.1|2025-07-05 15:29:35
+SELECT * FROM products WHERE price > 100 ORDER BY name;|Attack|127.0.0.1|2025-07-05 15:30:01
+SELECT * FROM users WHERE username = 'admin' --';|0|127.0.0.1|2025-07-06 00:13:03
+SELECT * FROM users WHERE username = 'admin' OR 1=1;|1|127.0.0.1|2025-07-06 00:13:12
+SELECT * FROM users WHERE username = '' OR '1'='1';|1|127.0.0.1|2025-07-06 00:13:19
+SELECT * FROM login WHERE user='' OR 1=1 -- AND pass='';|1|127.0.0.1|2025-07-06 00:13:25
+SELECT * FROM users WHERE username = 'admin' --;|1|127.0.0.1|2025-07-06 00:16:38
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|1|127.0.0.1|2025-07-06 00:17:08
+SELECT * FROM login WHERE user = '' OR 1=1 -- AND pass = '';|1|127.0.0.1|2025-07-06 00:17:14
+SELECT * FROM users WHERE id = 1 UNION SELECT credit_card_number FROM payments;|1|127.0.0.1|2025-07-06 00:17:20
+SELECT * FROM employees WHERE name = 'a'; DROP TABLE employees; --|0|127.0.0.1|2025-07-06 00:17:26
+SELECT * FROM data WHERE id = 1 AND 1=1;|0|127.0.0.1|2025-07-06 00:17:32
+' OR '1'='1|1|127.0.0.1|2025-07-06 00:55:22
+' OR '1'='1|1|127.0.0.1|2025-07-06 00:55:26
+' OR '1'='1|1|127.0.0.1|2025-07-06 00:55:32
+SELECT * FROM users WHERE username = 'admin'|1|127.0.0.1|2025-07-06 00:55:41
+SELECT * FROM users WHERE username = 'admin'|1|127.0.0.1|2025-07-06 00:55:56
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-07-06 01:00:01
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-07-06 01:00:07
+' OR 1=1 --|Attack|127.0.0.1|2025-07-06 01:00:09
+hello world|Attack|127.0.0.1|2025-07-06 01:00:11
+hello world|Attack|127.0.0.1|2025-07-06 01:00:13
+1 == 1|Attack|127.0.0.1|2025-07-06 01:00:17
+SELECT * FROM users WHERE username = 'admin'0|Attack|127.0.0.1|2025-07-06 01:00:20
+' OR '1'='1|Attack|127.0.0.1|2025-07-06 01:00:44
+' OR 'a'='a|Attack|127.0.0.1|2025-07-06 01:00:50
+SELECT * FROM users WHERE username = 'john';|Attack|127.0.0.1|2025-07-06 01:01:01
+DELETE FROM products WHERE id = 45;|Safe|127.0.0.1|2025-07-06 01:01:09
+INSERT INTO customers (name, email) VALUES ('Alice', 'alice@example.com');|Safe|127.0.0.1|2025-07-06 01:01:18
+' UNION SELECT null, null, null --|Attack|127.0.0.1|2025-07-06 01:01:25
+' OR 1=1; DROP TABLE users; --|Attack|127.0.0.1|2025-07-06 01:01:30
+'; WAITFOR DELAY '00:00:05' --|Attack|127.0.0.1|2025-07-06 01:01:40
+1' AND SLEEP(2) --|Attack|127.0.0.1|2025-07-06 01:01:46
+' UNION SELECT table_name, column_name FROM information_schema.columns --|Safe|127.0.0.1|2025-07-06 01:01:54
+' UNION SELECT 1,2,3 --|Attack|127.0.0.1|2025-07-06 01:02:01
+' OR 1=1; DROP TABLE products; --|Attack|127.0.0.1|2025-07-06 01:02:07
+' AND ASCII(SUBSTRING(@@version, 1, 1)) = 77 --|Attack|127.0.0.1|2025-07-06 01:02:14
+'/**/OR/**/1=1--|Attack|127.0.0.1|2025-07-06 01:02:22
+SELECT * FROM users WHERE username = 'john';|Attack|127.0.0.1|2025-07-06 01:05:37
+SELECT id, name FROM products WHERE price < 100;|Safe|127.0.0.1|2025-07-06 01:05:44
+SELECT * FROM orders WHERE order_id = 1024;|Safe|127.0.0.1|2025-07-06 01:05:50
+SELECT email FROM customers WHERE customer_id = 1;|Safe|127.0.0.1|2025-07-06 01:05:56
+SELECT name FROM employees WHERE department = 'HR';|Safe|127.0.0.1|2025-07-06 01:06:02
+SELECT * FROM login WHERE username = 'admin' AND password = 'secure123';|Attack|127.0.0.1|2025-07-06 01:06:10
+SELECT * FROM books WHERE title LIKE '%SQL%';|Safe|127.0.0.1|2025-07-06 01:06:20
+SELECT COUNT(*) FROM sales WHERE date = '2023-01-01';|Safe|127.0.0.1|2025-07-06 01:06:25
+SELECT * FROM tickets WHERE status = 'open' AND priority = 'high';|Attack|127.0.0.1|2025-07-06 01:06:31
+SELECT * FROM accounts WHERE balance > 1000;|Safe|127.0.0.1|2025-07-06 01:06:40
+SELECT * FROM users WHERE username = 'admin' --';|Attack|127.0.0.1|2025-07-06 01:06:49
+SELECT * FROM users WHERE username = 'admin' OR 1=1 --';|Attack|127.0.0.1|2025-07-06 01:06:55
+SELECT * FROM login WHERE username = '' OR '1'='1' AND password = '' OR '1'='1';|Attack|127.0.0.1|2025-07-06 01:07:01
+SELECT * FROM users WHERE username = 'admin'; DROP TABLE users; --';|Attack|127.0.0.1|2025-07-06 01:07:07
+SELECT * FROM products WHERE id = 1 UNION SELECT username, password FROM users;|Attack|127.0.0.1|2025-07-06 01:07:22
+SELECT * FROM employees WHERE name = 'a' OR 1=1#';|Attack|127.0.0.1|2025-07-06 01:07:30
+SELECT * FROM accounts WHERE account_id = 1 OR '1'='1';|Safe|127.0.0.1|2025-07-06 01:07:36
+SELECT * FROM members WHERE name = ''; EXEC xp_cmdshell('dir'); --';|Safe|127.0.0.1|2025-07-06 01:07:47
+SELECT * FROM customers WHERE name = 'x' AND 1=(SELECT COUNT(*) FROM users)';|Attack|127.0.0.1|2025-07-06 01:07:55
+SELECT * FROM orders WHERE id = 1; SHUTDOWN --';|Safe|127.0.0.1|2025-07-06 01:08:04
+SELECT * FROM employees WHERE id = 1001;|Safe|127.0.0.1|2025-07-06 01:23:51
+SELECT name, age FROM users WHERE age > 25;|Attack|127.0.0.1|2025-07-06 01:23:58
+SELECT * FROM products WHERE category = 'Electronics';|Safe|127.0.0.1|2025-07-06 01:24:46
+SELECT * FROM login WHERE username = 'user1' AND password = 'password123';|Attack|127.0.0.1|2025-07-06 01:24:54
+SELECT email FROM customers WHERE city = 'New York';|Safe|127.0.0.1|2025-07-06 01:25:03
+SELECT * FROM orders WHERE status = 'shipped';|Safe|127.0.0.1|2025-07-06 01:25:12
+SELECT * FROM payments WHERE amount > 500;|Safe|127.0.0.1|2025-07-06 01:25:18
+SELECT * FROM books WHERE title LIKE '%Python%';|Safe|127.0.0.1|2025-07-06 01:25:24
+SELECT COUNT(*) FROM visitors WHERE visit_date = '2023-12-01';|Safe|127.0.0.1|2025-07-06 01:25:29
+SELECT * FROM doctors WHERE specialization = 'cardiology';|Safe|127.0.0.1|2025-07-06 01:25:35
+SELECT * FROM users WHERE username = 'admin' --';|Attack|127.0.0.1|2025-07-06 01:25:41
+SELECT * FROM login WHERE username = '' OR '1'='1' AND password = '' OR '1'='1';|Attack|127.0.0.1|2025-07-06 01:25:48
+SELECT * FROM employees WHERE name = 'x' OR 1=1 --';|Attack|127.0.0.1|2025-07-06 01:25:54
+SELECT * FROM customers WHERE name = ''; DROP TABLE customers; --';|Safe|127.0.0.1|2025-07-06 01:26:00
+SELECT * FROM customers WHERE name = '';|Safe|127.0.0.1|2025-07-06 01:26:12
+DROP TABLE customers; --';|Attack|127.0.0.1|2025-07-06 01:26:18
+SELECT * FROM customers WHERE name = ''; DROP TABLE customers; --';|Safe|127.0.0.1|2025-07-06 01:26:25
+SELECT * FROM products WHERE id = 1 UNION SELECT username, password FROM users;|Attack|127.0.0.1|2025-07-06 01:26:31
+SELECT * FROM login WHERE username = 'admin' AND password = '' OR '1'='1';|Attack|127.0.0.1|2025-07-06 01:26:38
+SELECT * FROM accounts WHERE account_id = 105 OR 1=1;|Attack|127.0.0.1|2025-07-06 01:26:43
+SELECT * FROM data WHERE info = ''; EXEC xp_cmdshell('dir'); --';|Safe|127.0.0.1|2025-07-06 01:26:49
+SELECT * FROM users WHERE name = 'test' AND 1=(SELECT COUNT(*) FROM admin)';|Attack|127.0.0.1|2025-07-06 01:26:58
+SELECT * FROM auth WHERE username = 'admin'; SHUTDOWN --';|Attack|127.0.0.1|2025-07-06 01:27:04
+SELECT * FROM accounts WHERE email = 'a@b.com' OR 1=1;|Safe|127.0.0.1|2025-07-06 01:27:31
+SELECT * FROM login WHERE username = '' OR 1=1 --';|Attack|127.0.0.1|2025-07-06 01:27:37
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Attack|127.0.0.1|2025-07-06 01:27:42
+SELECT * FROM products WHERE id = 1 UNION SELECT username, password FROM users;|Attack|127.0.0.1|2025-07-06 01:27:48
+SELECT * FROM orders WHERE order_id = 10 UNION SELECT name, email FROM customers;|Safe|127.0.0.1|2025-07-06 01:27:59
+SELECT name FROM books WHERE id = 5 UNION SELECT NULL, version() --';|Attack|127.0.0.1|2025-07-06 01:28:04
+SELECT * FROM users WHERE id = 105; DROP TABLE users; --';|Attack|127.0.0.1|2025-07-06 01:28:10
+SELECT * FROM login WHERE username = 'admin'; UPDATE users SET role = 'admin' WHERE username = 'guest';|Attack|127.0.0.1|2025-07-06 01:28:16
+SELECT * FROM customers WHERE name = 'John'; SHUTDOWN --';|Safe|127.0.0.1|2025-07-06 01:28:23
+SELECT * FROM users WHERE id = 1 AND 1=1;|Attack|127.0.0.1|2025-07-06 01:28:29
+SELECT * FROM accounts WHERE id = 1 AND SUBSTRING(version(),1,1) = '5';|Attack|127.0.0.1|2025-07-06 01:28:37
+SELECT * FROM data WHERE id = 1 AND ASCII(SUBSTRING((SELECT password FROM admin LIMIT 1),1,1)) > 70;|Attack|127.0.0.1|2025-07-06 01:28:43
+SELECT * FROM products WHERE id = 1 AND (SELECT 1/0);|Attack|127.0.0.1|2025-07-06 01:28:48
+SELECT * FROM users WHERE username = 'admin' AND (SELECT count(*) FROM nonexistent_table);|Attack|127.0.0.1|2025-07-06 01:28:55
+SELECT * FROM login WHERE username = 'admin' AND updatexml(null,concat(0x3a,user()),null);|Attack|127.0.0.1|2025-07-06 01:29:01
+SELECT * FROM login WHERE username = 'admin'; DROP TABLE login; --';|Attack|127.0.0.1|2025-07-06 01:29:08
+SELECT * FROM data WHERE id = 1; INSERT INTO logs (msg) VALUES ('attack');|Safe|127.0.0.1|2025-07-06 01:29:14
+SELECT * FROM users WHERE username = 'admin' AND SLEEP(5);|Attack|127.0.0.1|2025-07-06 01:29:22
+SELECT * FROM products WHERE id = 1 AND IF(1=1, SLEEP(3), 0);|Attack|127.0.0.1|2025-07-06 01:29:27
+SELECT * FROM users WHERE username = 'admin'|Attack|127.0.0.1|2025-07-10 10:11:04
+' OR 1=1 --|Attack|127.0.0.1|2025-07-10 10:11:19
+admin' -- |Attack|127.0.0.1|2025-07-10 10:11:27
+hello world|Attack|127.0.0.1|2025-07-10 10:11:40
+pritesh |Attack|127.0.0.1|2025-07-10 10:11:47
+SELECT * FROM users WHERE username = 'john_doe';|Attack|127.0.0.1|2025-07-10 10:12:10
+SELECT id, name FROM employees WHERE department = 'Sales';|Safe|127.0.0.1|2025-07-10 10:12:19
+SELECT product_name FROM products WHERE price < 500;|Safe|127.0.0.1|2025-07-10 10:12:28
+SELECT email FROM customers WHERE city = 'New York' AND status = 'active';|Safe|127.0.0.1|2025-07-10 10:12:39
+SELECT COUNT(*) FROM orders WHERE order_date >= '2023-01-01';|Safe|127.0.0.1|2025-07-10 10:12:48
+INSERT INTO users (username, password) VALUES ('alice', 'secure123');|Attack|127.0.0.1|2025-07-10 10:12:57
+INSERT INTO orders (customer_id, product_id, quantity) VALUES (12, 34, 2);|Safe|127.0.0.1|2025-07-10 10:13:08
+INSERT INTO feedback (user_id, message) VALUES (5, 'Great service!');|Safe|127.0.0.1|2025-07-10 10:13:19
+SELECT * FROM users WHERE username = 'admin' OR '1'='1';|Attack|127.0.0.1|2025-07-10 10:33:30
+SELECT * FROM users WHERE username = 'admin';|Attack|127.0.0.1|2025-07-10 10:33:39
+SELECT * FROM login WHERE user = 'admin' /*' AND pass = '123'*/;|Attack|127.0.0.1|2025-07-10 10:33:43
+' OR '1'='1|Attack|127.0.0.1|2025-07-10 10:33:46
+hello world|Attack|127.0.0.1|2025-07-10 10:33:49
+pritesh|Attack|127.0.0.1|2025-07-10 10:33:52
+SELECT id FROM users WHERE username = 'admin';|Attack|127.0.0.1|2025-07-10 10:34:10
+INSERT INTO feedback (user_id, comment) VALUES (1001, 'Nice UI!');|Safe|127.0.0.1|2025-07-10 13:31:38
+DELETE FROM attempts WHERE try_count > 5;|Safe|127.0.0.1|2025-07-10 13:31:52
+SELECT * FROM login WHERE email = 'admin' OR 'abc' = 'abc' --';|Attack|127.0.0.1|2025-07-10 13:32:07

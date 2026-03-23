@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>SQL Injection Detection</title>
+    <link href="https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Orbitron:wght@500&display=swap" rel="stylesheet">
+     
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            font-family: 'Share Tech Mono', monospace;
+            background-color: #090c11;
+            color: #e4e4e4;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            color: #00ffcc;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 3vh 5vw;               
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            border-bottom: 0.4vh solid #00ffcc; 
+            box-sizing: border-box;
+        }
+
+        .navbar-left a {
+            font-size: 1.8rem;                
+            font-weight: bold;
+            white-space: nowrap;
+        }
+
+        .navbar-right {
+            display: flex;
+            flex: 1 1 auto;
+            justify-content: flex-end;
+            flex-wrap: wrap;
+            gap: 2vw;       
+            font-size: 1.2rem;                  
+            min-width: 0;
+            overflow-x: auto;
+        }
+
+        .navbar a {
+            color: #33ebc6;
+            text-decoration: none;
+            white-space: nowrap;
+        }
+
+        .navbar a:hover {
+            color: #00ffcca8;
+        }
+
+        .main-wrapper {
+            flex: 1;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding-top: 10vh;
+            padding-left: 25vw;
+            width: 50%;
+        }
+
+        .form-container {
+            width: 90%;
+            max-width: 60vw;
+            background: #161b22bb;
+            padding: 5vh 4vw;
+            border-radius: 2vh;
+            box-shadow: 0 0 2vh #00ffcc50;
+        }
+
+        h2 {
+            text-align: center;
+            font-family: 'Orbitron', sans-serif;
+            color: #00ffcc;
+            margin-bottom: 4vh;
+            font-size: 2vw;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 1.5vh;
+            font-weight: bold;
+            font-size: 1.3rem;
+        }
+
+        input[type="text"] {
+            width: 95%;
+            padding: 1.5vh 1vw;
+            margin-top: 0.5rem;
+            border: 0.3vh solid #00ffcc;
+            background-color: #0d1117;
+            color: #ffffff;
+            border-radius: 1vh;
+            margin-bottom: 3vh;
+            font-size: 1rem;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            box-shadow: 0 0 1vh #00ffcc;
+        }
+
+        button {
+            width: 100%;
+            background-color: #00ffcc;
+            color: #0d1117;
+            padding: 1.5vh 0;
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 1vh;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            background-color: #00ffcc8a;
+            color: #ffffff;
+        }
+
+        .alert {
+            padding: 2vh;
+            border-radius: 1vh;
+            margin-top: 3vh;
+            font-weight: bold;
+            text-align: center;
+            font-size: 1rem;
+        }
+
+        .alert-success {
+            background-color: #1a7f37;
+            color: #d2f4dd;
+        }
+
+        .alert-danger {
+            background-color: #8b0000;
+            color: #f8d7da;
+        }
+
+        footer {
+            text-align: center;
+            margin-top: 5vh;
+            color: #666;
+            font-size: 0.9rem;
+        }
+    </style>
+
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="navbar-left">
+            <a href="/">SQLi DETECTOR</a>
+        </div>
+        <div class="navbar-right">
+            <a href="/">Home</a>
+            <a href="/login">Admin-Login</a>
+        </div>
+    </nav>
+
+
+
+        <!-- Form -->
+    <div class="main-wrapper">
+        <div class="form-container">
+            <h2>🔐 Check for SQL Injection</h2>
+            <form method="POST" action="/">
+                <label for="input">Enter your query or input:</label>
+                <input type="text" id="input" name="user_input" placeholder="e.g., SELECT * FROM users WHERE id='1'" required>
+                <button type="submit">Scan Input</button>
+            </form>
+
+            {% if prediction %}
+            <div class="alert 
+                {% if prediction == 'Safe' %}
+                    alert-success
+                {% else %}
+                    alert-danger
+                {% endif %}">
+                Result: <strong>{{ prediction }}</strong>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; SQLi Detection Systems</p>
+    </footer>
+
+</body>
+</html>
