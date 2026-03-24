@@ -2,3 +2,4 @@ joblib
 flask
 xhtml2pdf
 pywebview
+scikit-learn
